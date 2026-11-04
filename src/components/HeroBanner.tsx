@@ -1,49 +1,72 @@
-const data = [
-  {
-    id: 3842,
-    title: "Highway Driving (Epic Games) Giveaway",
-    worth: "$9.99",
-    thumbnail: "https://www.gamerpower.com/offers/1/6ae7cab593610.jpg",
-    image: "https://www.gamerpower.com/offers/1b/6ae7cab593610.jpg",
-    description:
-      "Score Highway Driving for free on Epic Games Store. Highway Driving is 3D racing game with casual gameplay.",
-    instructions:
-      "1. Click the button to visit the giveaway page.\r\n2. Log in to your Epic Games Store account.\r\n3. Click the button to add the game to your library",
-    open_giveaway_url:
-      "https://www.gamerpower.com/open/highway-driving-epic-games-giveaway",
-    published_date: "2026-11-01 18:26:45",
-    type: "Game",
-    platforms: "PC, Epic Games Store",
-    end_date: "2026-11-08 23:59:00",
-    users: 2400,
-    status: "Active",
-    gamerpower_url:
-      "https://www.gamerpower.com/highway-driving-epic-games-giveaway",
-    open_giveaway:
-      "https://www.gamerpower.com/open/highway-driving-epic-games-giveaway",
-  },
-];
+import { useContext } from "react";
+import { GamesListContext } from "../contexts/GamesListContext";
+import { sortByLatest } from "../utilities/DateAndTimeHelper";
+
 export default function HeroBanner() {
+  let getGamesList: Array<typFreeToGames> = useContext(GamesListContext);
+  if (getGamesList) {
+    getGamesList = getGamesList.sort((itemA, itemB) =>
+      sortByLatest(itemA.release_date, itemB.release_date, "latest"),
+    );
+  }
+  const featured: typFreeToGames = getGamesList[0];
+  if (!featured) {
+    return null;
+  }
   return (
-    <section
-      className="min-h-fit"
-      style={{
-        backgroundImage: `url(${data[0].image})`,
-        backgroundRepeat: `no-repeat`,
-        backgroundSize: `cover`,
-      }}
-    >
-      <div className="hero from-base-100/80 to-base-100 min-h-[75vh] bg-linear-to-b from-0%">
-        <div className="hero-content h-full w-full flex-col lg:flex-row">
+    <section className="bg-base-200 border-base-300 flex flex-col border-b bg-repeat contain-content">
+      <header className="border-base-300 border-b px-12 py-6">
+        <h1 className="text-4xl font-bold">Popular</h1>
+      </header>
+      <div
+        className="p-12"
+        style={{
+          background: `url("data:image/svg+xml,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M%200%2020%20L%2020%200%22%20fill%3D%22none%22%20stroke%3D%22%2364748b%22%20stroke-width%3D%221%22%20stroke-opacity%3D%220.2%22%20%2F%3E%3C%2Fsvg%3E")`,
+        }}
+      >
+        <div className="card md:card-side bg-base-100 overflow-clip hover:shadow-md lg:h-70">
           <img
-            alt="Tailwind CSS hero component"
-            src={data[0].thumbnail}
-            className="max-w-sm shadow-2xl"
+            className="content-start-start flex"
+            src={featured.thumbnail}
+            alt="Album"
           />
-          <div>
-            <h1 className="text-5xl font-bold">{data[0].title}</h1>
-            <p className="py-6">{data[0].description}</p>
-            <button className="btn btn-primary">Get Started</button>
+
+          <div className="card-body flex flex-1 gap-4">
+            <header>
+              <h2 className="card-title text-5xl">{featured.title}</h2>
+            </header>
+
+            <div className="flex flex-wrap gap-2">
+              <span className="badge badge-soft badge-md badge-primary">
+                {featured.genre}
+              </span>
+
+              <span className="badge badge-soft badge-md badge-primary">
+                {featured.platform}
+              </span>
+            </div>
+
+            <div className="opacity-75">
+              {featured.developer === featured.publisher ? (
+                <p>
+                  {`Developed & Published by : `}
+                  <a className="text-primary">{featured.developer}</a>
+                </p>
+              ) : (
+                <>
+                  <p>
+                    {`Developed by : `}
+                    <a className="text-primary">{featured.developer}</a>
+                  </p>
+                  <p>
+                    {`Published by : `}
+                    <a className="text-primary">{featured.publisher}</a>
+                  </p>
+                </>
+              )}
+            </div>
+
+            <p className="text-xl opacity-75">{featured.short_description}</p>
           </div>
         </div>
       </div>
