@@ -1,6 +1,9 @@
-export default function ({ children }) {
+export default function ({ children, idValue }) {
   return (
-    <section className="bg-base-200 border-base-300 flex flex-col border-b bg-repeat">
+    <section
+      id={idValue}
+      className="bg-base-200 border-base-300 flex flex-col border-b bg-repeat"
+    >
       {children}
     </section>
   );
