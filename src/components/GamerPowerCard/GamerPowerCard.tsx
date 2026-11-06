@@ -11,15 +11,15 @@ export default function GamerPowerCard({ game }: { game: typGamerPower }) {
         <img className="" src={game.image} alt="Shoes" loading="lazy" />
       </figure>
       <div className="card-body">
-        <div>
-          <span className="badge badge-soft">
+        <div className="join join-horizontal">
+          <span className="badge join-item badge-soft">
             <del className="opacity-75">{game.worth}</del>
           </span>
-          <span className="badge badge-soft badge-primary">
-            <del>{game.worth}</del>
-          </span>
+          <span className="badge join-item badge-primary">Free!!</span>
         </div>
-        {`Offer ends on ${getLocaleDateString(game.end_date)} at ${getLocaleTimeString(game.end_date)}`}
+        <p>
+          {`Offer ends on ${getLocaleDateString(game.end_date)} at ${getLocaleTimeString(game.end_date)}`}
+        </p>
         <h2 className="card-title w-full truncate text-left text-ellipsis whitespace-nowrap">
           {game.title}
         </h2>

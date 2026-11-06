@@ -14,13 +14,15 @@ export default function HeroBanner() {
   //simplify
   return !featured ? null : (
     <div className="bg-diagonal-lines p-12">
-      <article className="card md:card-side bg-base-100 keywords overflow-clip hover:shadow-md">
-        <img
-          className="content-start-start bg-base-300 flex min-w-5/12"
-          src={featured.thumbnail}
-          loading="lazy"
-          alt="Album"
-        />
+      <article className="card md:card-side bg-base-100 keywords hover:shadow-md">
+        <figure className="overflow-clip">
+          <img
+            className="content-start-start bg-base-300 flex min-w-5/12"
+            src={featured.thumbnail}
+            loading="lazy"
+            alt="Album"
+          />
+        </figure>
 
         <div className="card-body flex flex-1 gap-4">
           <header>
