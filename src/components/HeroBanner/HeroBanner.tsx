@@ -1,22 +1,20 @@
 import { useContext } from "react";
-import { sortByLatest } from "../../utilities/DateAndTimeHelper";
+import { sortByDate } from "../../utilities/DateAndTimeHelper";
 import { GamesListContext } from "../../contexts/GamesListContext";
 
 export default function HeroBanner() {
-  let getGamesList: typFreeToGames[] = useContext(GamesListContext);
-  if (getGamesList) {
-    getGamesList = getGamesList.sort((itemA, itemB) =>
-      sortByLatest(itemA.release_date, itemB.release_date, "latest"),
+  let { freeToGamesList } = useContext(GamesListContext);
+  if (freeToGamesList) {
+    freeToGamesList = freeToGamesList.sort((itemA, itemB) =>
+      sortByDate(itemA.release_date, itemB.release_date, "Ascending"),
     );
   }
-  const featured = getGamesList[0];
-  if (!featured) {
-    return null;
-  }
+  const featured = freeToGamesList[0];
+
   //simplify
-  return (
+  return !featured ? null : (
     <div className="bg-diagonal-lines p-12">
-      <article className="card md:card-side bg-base-100 keywords overflow-clip hover:shadow-md lg:h-70">
+      <article className="card md:card-side bg-base-100 keywords overflow-clip hover:shadow-md">
         <img
           className="content-start-start bg-base-300 flex min-w-5/12"
           src={featured.thumbnail}
@@ -30,16 +28,16 @@ export default function HeroBanner() {
           </header>
 
           <div className="flex flex-wrap gap-2">
-            <span className="badge badge-soft badge-md badge-primary">
+            <span className="badge badge-sm badge-soft badge-primary">
               {featured.genre}
             </span>
 
-            <span className="badge badge-soft badge-md badge-primary">
+            <span className="badge badge-sm badge-soft badge-primary">
               {featured.platform}
             </span>
           </div>
 
-          <div className="opacity-75">
+          <div className="opacity-75 *:text-xs">
             {featured.developer === featured.publisher ? (
               <p>
                 {`Developed & Published by : `}
@@ -59,7 +57,21 @@ export default function HeroBanner() {
             )}
           </div>
 
-          <p className="text-xl opacity-75">{featured.short_description}</p>
+          <p className="opacity-75">{featured.short_description}</p>
+          <footer className="flex gap-4">
+            <a
+              className="btn btn-sm btn-soft btn-primary"
+              href={featured.game_url}
+            >
+              View Website
+            </a>
+            <a
+              className="btn btn-sm btn-soft btn-accent"
+              href={featured.freetogame_profile_url}
+            >
+              View FTG Profile
+            </a>
+          </footer>
         </div>
       </article>
     </div>

@@ -31,7 +31,7 @@ type typGamerPower = {
 };
 type typLocalData = {
   expiresAt: Date;
-  data: Array<intFreeToGames> | [];
+  data: Array<typFreeToGames> | Array<typGamerPower> | [];
 };
 type typResult = {
   data: null | any;

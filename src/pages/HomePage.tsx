@@ -1,8 +1,9 @@
 import { lazy, Suspense } from "react";
-import CardsCaraousel from "../components/CardsCaraousel";
 import HeroBannerSkeleton from "../components/HeroBanner/HeroBannerSkeleton";
 import Section from "../components/Section";
 const HeroBanner = lazy(() => import("../components/HeroBanner/HeroBanner"));
+import CardsCaraousel from "../components/CardsCaraousel";
+
 export default function HomePage() {
   return (
     <>
