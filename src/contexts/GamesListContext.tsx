@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState, type ReactNode } from "react";
-import { minutesToMilliseconds } from "../utilities/DateAndTimeHelper";
+import { fetchDataFromAPILink, getAPIfromLocal } from "../utilities/apiHelper";
 
 export const GamesListContext = createContext([]);
 
@@ -12,36 +12,21 @@ export default function GamesListContextProvider({
 
   useEffect(() => {
     const controller = new AbortController();
-    const stored = localStorage.getItem("storedData");
-    if (stored) {
-      const storedData: typLocalData = JSON.parse(stored);
-      const expiry = new Date(storedData.expiresAt).getTime();
-      if (expiry > Date.now()) {
-        console.log("retrieved from local");
-        setGamesList(storedData.data);
-        return;
-      }
-    }
-    fetch("https://www.freetogame.com/api/games")
-      .then((response) => {
-        console.log("fetched");
-        if (!response.ok) {
-          throw Error(response.status.toString());
+    const local = getAPIfromLocal("freeToGamesData");
+    if (local.error) {
+      fetchDataFromAPILink(
+        "https://www.freetogame.com/api/games",
+        "freeToGamesData",
+      ).then((result) => {
+        if (result.error) {
+          console.error(result.error);
+        } else {
+          setGamesList(result.data);
         }
-        return response.json() as Promise<Array<typFreeToGames>>;
-      })
-      .then((gamesList) => {
-        setGamesList(gamesList);
-        const expiry = new Date(Date.now() + minutesToMilliseconds(10));
-        const storageItem: typLocalData = {
-          expiresAt: expiry,
-          data: gamesList,
-        };
-        localStorage.setItem("storedData", JSON.stringify(storageItem));
-      })
-      .catch((error) => {
-        console.error("Could not load games:", error);
       });
+    } else {
+      setGamesList(local.data);
+    }
     return () => controller.abort();
   }, []);
   return (

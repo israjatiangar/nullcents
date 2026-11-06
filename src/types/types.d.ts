@@ -33,3 +33,7 @@ type typLocalData = {
   expiresAt: Date;
   data: Array<intFreeToGames> | [];
 };
+type typResult = {
+  data: null | any;
+  error: null | Error;
+};
