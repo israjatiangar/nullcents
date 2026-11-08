@@ -11,7 +11,6 @@ export default function HeroBanner() {
   }
   const featured = freeToGamesList[0];
 
-  //simplify
   return !featured ? null : (
     <div className="bg-diagonal-lines p-12">
       <article className="card md:card-side bg-base-100 keywords hover:shadow-md">
@@ -61,14 +60,11 @@ export default function HeroBanner() {
 
           <p className="opacity-75">{featured.short_description}</p>
           <footer className="flex gap-4">
-            <a
-              className="btn btn-sm btn-soft btn-primary"
-              href={featured.game_url}
-            >
+            <a className="btn btn-soft btn-primary" href={featured.game_url}>
               View Website
             </a>
             <a
-              className="btn btn-sm btn-soft btn-accent"
+              className="btn btn-soft btn-accent"
               href={featured.freetogame_profile_url}
             >
               View FTG Profile

@@ -1,12 +1,17 @@
 import { createContext, useEffect, useState } from "react";
 import { fetchDataFromAPILink, getAPIfromLocal } from "../utilities/apiHelper";
 
-export const GamesListContext = createContext({
+type typGameListContext = {
+  freeToGamesList: Array<typFreeToGames>;
+  gamerPowerList: Array<typGamerPower>;
+};
+export const GamesListContext = createContext<typGameListContext>({
   freeToGamesList: [],
   gamerPowerList: [],
 });
 
 export default function GamesListContextProvider({ children }) {
+
   const [freeToGamesList, setFreeToGamesList] = useState<typFreeToGames[] | []>(
     [],
   );
@@ -56,7 +61,12 @@ export default function GamesListContextProvider({ children }) {
   }, []);
 
   return (
-    <GamesListContext.Provider value={{ freeToGamesList, gamerPowerList }}>
+    <GamesListContext.Provider
+      value={{
+        freeToGamesList,
+        gamerPowerList,
+      }}
+    >
       {children}
     </GamesListContext.Provider>
   );

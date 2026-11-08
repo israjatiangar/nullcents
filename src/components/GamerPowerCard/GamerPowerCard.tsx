@@ -2,15 +2,27 @@ import {
   getLocaleDateString,
   getLocaleTimeString,
 } from "../../utilities/DateAndTimeHelper";
+import BookmarkButton from "../BookmarkButton";
 
 /** Return Daisy UI Cards with type typGamerPower  */
-export default function GamerPowerCard({ game }: { game: typGamerPower }) {
+export default function GamerPowerCard({
+  game,
+  isBookmarked,
+}: {
+  game: typGamerPower;
+  isBookmarked: boolean;
+}) {
   return (
-    <article className="card bg-base-100 w-96 shadow-sm">
-      <figure className="relative h-6/12">
-        <img className="" src={game.image} alt="Shoes" loading="lazy" />
+    <article className="card bg-base-100 relative w-96 justify-items-stretch shadow-sm hover:[&_.hover-view]:flex">
+      <figure className="relative min-h-52">
+        <img
+          className="h-full object-cover"
+          src={game.image}
+          alt="Shoes"
+          loading="lazy"
+        />
       </figure>
-      <div className="card-body">
+      <div className="card-body gap-4">
         <div className="join join-horizontal">
           <span className="badge join-item badge-soft">
             <del className="opacity-75">{game.worth}</del>
@@ -20,10 +32,9 @@ export default function GamerPowerCard({ game }: { game: typGamerPower }) {
         <p>
           {`Offer ends on ${getLocaleDateString(game.end_date)} at ${getLocaleTimeString(game.end_date)}`}
         </p>
-        <h2 className="card-title w-full truncate text-left text-ellipsis whitespace-nowrap">
+        <h2 className="card-title truncate text-left text-ellipsis whitespace-nowrap">
           {game.title}
         </h2>
-        <p>{game.description}</p>
         <p>
           Already Claimed by
           <span className="text-primary"> {game.users}+ </span>
@@ -38,6 +49,7 @@ export default function GamerPowerCard({ game }: { game: typGamerPower }) {
           </a>
         </div>
       </div>
+      <BookmarkButton id={game.id} isBookmarked={isBookmarked} />
     </article>
   );
 }
