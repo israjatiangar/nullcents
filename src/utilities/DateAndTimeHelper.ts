@@ -25,3 +25,6 @@ export function getLocaleTimeString(dateString: string) {
     timeStyle: "short",
   });
 }
+export function getCurrentDate() {
+  return Date.now();
+}

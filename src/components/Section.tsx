@@ -1,9 +1,6 @@
-export default function ({ children, idValue }) {
+export default function ({ children, idValue, classes = "" }) {
   return (
-    <section
-      id={idValue}
-      className="bg-base-200 border-base-300 flex flex-col border-b bg-repeat"
-    >
+    <section id={idValue} className={`${classes} flex flex-col`}>
       {children}
     </section>
   );

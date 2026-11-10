@@ -1,11 +1,6 @@
 export default function HeroBannerSkeleton() {
   return (
-    <div
-      className="p-12"
-      style={{
-        background: `url("data:image/svg+xml,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M%200%2020%20L%2020%200%22%20fill%3D%22none%22%20stroke%3D%22%2364748b%22%20stroke-width%3D%221%22%20stroke-opacity%3D%220.2%22%20%2F%3E%3C%2Fsvg%3E")`,
-      }}
-    >
+    <div className="bg-diagonal-lines p-12">
       <div className="card md:card-side bg-base-100 overflow-clip lg:h-70">
         <div
           className="skeleton h-64 w-full rounded-none md:h-auto md:w-5/12"

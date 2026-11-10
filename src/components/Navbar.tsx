@@ -7,13 +7,10 @@ export default function Navbar() {
   ];
   // #endregion
   return (
-    <header className="border-base-300 sticky top-0 z-10 w-dvw border-b">
-      <nav className="bg-base-100 mx-auto flex md:max-w-6xl">
+    <header className="w-dvw ">
+      <nav className="navbar bg-base-100 flex">
         <span className="flex-1">
-          <a
-            href="/"
-            className="btn btn-soft btn-primary border-x-base-300 rounded-none border-x text-xl"
-          >
+          <a href="/" className="btn btn-soft btn-primary text-xl">
             <span>Nullcents</span>
           </a>
         </span>
@@ -22,19 +19,14 @@ export default function Navbar() {
             {navLinks.map((item, index) => {
               return (
                 <li key={index}>
-                  <a
-                    className="btn-ghost btn focus border-x-base-300 rounded-none border"
-                    href={item.link}
-                  >
+                  <a className="btn-ghost btn" href={item.link}>
                     {item.name}
                   </a>
                 </li>
               );
             })}
             <li>
-              <button className="btn btn-soft btn-accent border-x-base-300 rounded-none border">
-                Sign In
-              </button>
+              <button className="btn btn-soft btn-accent">Sign In</button>
             </li>
           </menu>
         </span>

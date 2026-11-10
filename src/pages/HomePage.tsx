@@ -5,24 +5,27 @@ const HeroBanner = lazy(() => import("../components/HeroBanner/HeroBanner"));
 import CardsCaraousel from "../components/CardsCaraousel";
 
 export default function HomePage() {
+  function Header(title: string) {
+    return (
+      <header className="py-6">
+        <h2 className="text-4xl font-bold">{title}</h2>
+      </header>
+    );
+  }
+
   return (
     <>
       <title>NullCents | HomePage</title>
       <h1 className="hidden read-only:visible">Home Page</h1>
 
       <Section idValue={"#Featured"}>
-        <header className="border-base-300 border-b px-12 py-6">
-          <h2 className="text-4xl font-bold">Popular</h2>
-        </header>
         <Suspense fallback={<HeroBannerSkeleton />}>
           <HeroBanner />
         </Suspense>
       </Section>
 
       <Section idValue={"#Browse"}>
-        <header className="border-base-300 border-b px-12 py-6">
-          <h2 className="text-4xl font-bold">Offers</h2>
-        </header>
+        {Header("Popular")}
         <CardsCaraousel />
       </Section>
     </>

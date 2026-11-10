@@ -13,42 +13,35 @@ export default function GamerPowerCard({
   isBookmarked: boolean;
 }) {
   return (
-    <article className="card bg-base-100 relative w-96 justify-items-stretch shadow-sm hover:[&_.hover-view]:flex">
-      <figure className="relative min-h-52">
+    <article className="card relative w-96 justify-items-stretch shadow-sm hover:[&_img]:scale-105">
+      <figure className="rounded-selector relative object-cover">
         <img
-          className="h-full object-cover"
-          src={game.image}
+          className="w-full object-cover duration-300"
+          src={game.thumbnail}
           alt="Shoes"
           loading="lazy"
         />
       </figure>
       <div className="card-body gap-4">
-        <div className="join join-horizontal">
-          <span className="badge join-item badge-soft">
-            <del className="opacity-75">{game.worth}</del>
+        <h2 className="line-clamp-1 text-xl">{game.title}</h2>
+        <p>
+          <span className="flex gap-2">
+            {game.worth !== "N/A" && (
+              <del className="text-neutral-600">{game.worth}</del>
+            )}
+            <span className="badge badge-dash badge-primary">Free!!</span>
           </span>
-          <span className="badge join-item badge-primary">Free!!</span>
-        </div>
-        <p>
+          <br />
           {`Offer ends on ${getLocaleDateString(game.end_date)} at ${getLocaleTimeString(game.end_date)}`}
+          <br />
+          <span className="text-xs">
+            Already Claimed by
+            <span className="text-primary"> {game.users}+ </span>
+            people
+          </span>
         </p>
-        <h2 className="card-title truncate text-left text-ellipsis whitespace-nowrap">
-          {game.title}
-        </h2>
-        <p>
-          Already Claimed by
-          <span className="text-primary"> {game.users}+ </span>
-          people
-        </p>
-        <div className="card-actions">
-          <a className="btn btn-accent" href={game.open_giveaway_url}>
-            Claim it here
-          </a>
-          <a className="btn btn-soft btn-primary" href={game.gamerpower_url}>
-            Learn More at GamePower
-          </a>
-        </div>
       </div>
+
       <BookmarkButton id={game.id} isBookmarked={isBookmarked} />
     </article>
   );

@@ -6,7 +6,7 @@ export default function App() {
   return (
     <>
       <Navbar />
-      <main className="border-base-300 mx-auto min-h-screen border-x md:max-w-6xl">
+      <main className="mx-auto flex min-h-screen flex-col gap-4 md:max-w-6xl">
         <Routes>
           <Route index element={<HomePage />} />
         </Routes>

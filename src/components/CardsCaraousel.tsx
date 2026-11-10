@@ -12,14 +12,14 @@ export default function CardsCaraousel() {
     count.push(i);
   }
   return (
-    <div className="bg-base-300 relative min-h-50 scroll-smooth p-12">
-      <div className="carousel carousel-start flex h-fit w-full gap-4 rounded">
+    <div className="relative min-h-50">
+      <div className="carousel carousel-start rounded-box w-full space-x-4">
         {gamerPowerList &&
           gamerPowerList.map((game, index) => {
             return (
               index < 10 && (
                 <Suspense fallback={<GamerPowerCardSkeleton />}>
-                  <div className="carousel-item flex-1" key={index}>
+                  <div className="carousel-item" key={index}>
                     <GamerPowerCard
                       game={game}
                       isBookmarked={bookmarkList.includes(Number(game.id))}
