@@ -7,7 +7,7 @@ export default function Navbar() {
   ];
   // #endregion
   return (
-    <header className="w-dvw ">
+    <header className="w-dvw">
       <nav className="navbar bg-base-100 flex">
         <span className="flex-1">
           <a href="/" className="btn btn-soft btn-primary text-xl">

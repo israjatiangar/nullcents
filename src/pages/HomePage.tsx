@@ -3,30 +3,41 @@ import HeroBannerSkeleton from "../components/HeroBanner/HeroBannerSkeleton";
 import Section from "../components/Section";
 const HeroBanner = lazy(() => import("../components/HeroBanner/HeroBanner"));
 import CardsCaraousel from "../components/CardsCaraousel";
+import FreeToGamesCard from "../components/FreeToGamesCard";
 
 export default function HomePage() {
-  function Header(title: string) {
+  function Header({ children }) {
     return (
       <header className="py-6">
-        <h2 className="text-4xl font-bold">{title}</h2>
+        <h2 className="text-4xl font-bold">{children}</h2>
       </header>
     );
   }
+  const Dummy = [1, 2, 3, 4, 5];
 
   return (
     <>
       <title>NullCents | HomePage</title>
       <h1 className="hidden read-only:visible">Home Page</h1>
 
-      <Section idValue={"#Featured"}>
+      <Section idValue={"Featured"}>
         <Suspense fallback={<HeroBannerSkeleton />}>
           <HeroBanner />
         </Suspense>
       </Section>
 
-      <Section idValue={"#Browse"}>
-        {Header("Popular")}
+      <Section idValue={"Browse"}>
+        <Header>Browse</Header>
         <CardsCaraousel />
+      </Section>
+
+      <Section idValue={"All"}>
+        <Header>All Games</Header>
+        <div className="grid grid-cols-2 gap-4">
+          {Dummy.map((_, index) => (
+            <FreeToGamesCard key={index} count={index} />
+          ))}
+        </div>
       </Section>
     </>
   );
