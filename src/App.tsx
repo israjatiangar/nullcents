@@ -4,10 +4,12 @@ import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
 import Footer from "./components/Footer";
 export default function App() {
+  document.querySelector("html").className =
+    "motion-safe:scroll-smooth scrollbar-gutter-stable";
   return (
     <>
       <Navbar />
-      <main className="mx-auto min-h-screen space-y-4 md:max-w-6xl">
+      <main className="my-4 min-h-screen space-y-4 *:px-2 md:mx-auto md:max-w-6xl">
         <Routes>
           <Route index element={<HomePage />} />
         </Routes>

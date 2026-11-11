@@ -8,12 +8,12 @@ import FreeToGamesCard from "../components/FreeToGamesCard";
 export default function HomePage() {
   function Header({ children }) {
     return (
-      <header className="py-6">
+      <header className="py-4">
         <h2 className="text-4xl font-bold">{children}</h2>
       </header>
     );
   }
-  const Dummy = [1, 2, 3, 4, 5];
+  const Dummy = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   return (
     <>
@@ -33,7 +33,7 @@ export default function HomePage() {
 
       <Section idValue={"All"}>
         <Header>All Games</Header>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
           {Dummy.map((_, index) => (
             <FreeToGamesCard key={index} count={index} />
           ))}

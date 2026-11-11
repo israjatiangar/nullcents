@@ -13,7 +13,7 @@ export default function GamerPowerCard({
   isBookmarked: boolean;
 }) {
   return (
-    <article className="card relative w-96 justify-items-stretch shadow-sm hover:[&_img]:scale-105">
+    <article className="card relative w-2xs justify-items-stretch shadow-sm md:w-sm hover:[&_img]:scale-105">
       <figure className="rounded-selector relative object-cover">
         <img
           className="w-full object-cover duration-300"

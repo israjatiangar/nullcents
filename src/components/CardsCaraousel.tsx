@@ -13,7 +13,7 @@ export default function CardsCaraousel() {
   }
   return (
     <div className="relative min-h-50">
-      <div className="carousel carousel-start rounded-box w-full space-x-4 px-4">
+      <div className="carousel carousel-center md:carousel-start rounded-box w-full space-x-4">
         {gamerPowerList &&
           gamerPowerList.map((game, index) => {
             return (

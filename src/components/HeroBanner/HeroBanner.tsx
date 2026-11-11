@@ -38,17 +38,18 @@ export default function HeroBanner() {
 
   return !featured ? null : (
     <article
-      className="hero rounded-selector relative min-h-[80dvh] bg-size-[100%_100%] duration-500 hover:bg-size-[105%_105%]"
+      className="hero rounded-selector relative h-[75dvh] bg-size-[100%_100%] pb-4 duration-500 hover:bg-size-[105%_105%]"
       style={{
-        backgroundImage: `linear-gradient(to bottom, #0001, #000 ), url(${featured.image})`,
+        backgroundImage: `linear-gradient(to bottom, #0002, #000e 80%), url(${featured.image} )`,
         backgroundPosition: "center, center",
         backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
       }}
     >
       <div className="hero-content w-full place-content-start place-items-end place-self-end">
-        <div className="flex w-1/2 flex-col gap-2">
+        <div className="flex flex-col gap-2 md:w-1/2">
           <header>
-            <h1 className="line-clamp-2 py-2 text-5xl font-bold text-pretty">
+            <h1 className="line-clamp-2 text-5xl font-bold text-balance md:py-2">
               {featured.title}
             </h1>
           </header>
@@ -58,14 +59,14 @@ export default function HeroBanner() {
                 return <span className="badge badge-info">{item}</span>;
               })}
             </div>
-            <span className="badge bage-sm badge-primary badge-outline">
-              Offer ends:{" "}
+            <span className="badge badge-sm badge-primary badge-outline">
+              Offer ends:
               {getLocaleDateString(featured.end_date) ===
               getLocaleDateString(now.toString())
-                ? getLocaleDateString(featured.end_date)
+                ? `${getLocaleDateString(featured.end_date)}`
                 : `Today at ${getLocaleTimeString(featured.end_date)}`}
             </span>
-            <p className="line-clamp-3">{featured.description}</p>
+            <p className="line-clamp-3 text-pretty">{featured.description}</p>
           </div>
           <div className="flex gap-2">
             <a
@@ -85,7 +86,7 @@ export default function HeroBanner() {
           </div>
         </div>
         <progress
-          className="progress absolute right-4 bottom-4 w-1/3 opacity-50"
+          className="progress absolute right-4 bottom-2 left-4 w-auto opacity-50"
           value={timer}
           max={TICK}
         ></progress>
