@@ -1,11 +1,15 @@
+import { useNavigate } from "react-router";
+
 export default function Navbar() {
   // #region Links
   const navLinks = [
-    { name: "Browse Games", link: "#Browse" },
-    { name: "New Releases", link: "#New_Releases" },
+    { name: "Featured", link: "#Featured" },
     { name: "Give Aways", link: "#Give_Aways" },
+    { name: "All Games", link: "#All_Games" },
   ];
   // #endregion
+
+  const navigateTo = useNavigate();
   return (
     <header className="w-dvw">
       <nav className="navbar flex">
@@ -19,7 +23,11 @@ export default function Navbar() {
             {navLinks.map((item, index) => {
               return (
                 <li key={index}>
-                  <a className="btn-ghost btn" href={item.link}>
+                  <a
+                    className="btn-ghost btn"
+                    onClick={() => navigateTo("/")}
+                    href={item.link}
+                  >
                     {item.name}
                   </a>
                 </li>

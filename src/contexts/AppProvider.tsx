@@ -1,10 +1,10 @@
-import BookmarkContextProvider from "./BookmarkContext";
+import FavouriteContextProvider from "./FavouriteContext";
 import GamesListContextProvider from "./GamesListContext";
 
 export default function AppProvider({ children }) {
   return (
     <GamesListContextProvider>
-      <BookmarkContextProvider>{children}</BookmarkContextProvider>
+      <FavouriteContextProvider>{children}</FavouriteContextProvider>
     </GamesListContextProvider>
   );
 }

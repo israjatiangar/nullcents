@@ -25,12 +25,12 @@ export default function HomePage() {
         </Suspense>
       </Section>
 
-      <Section idValue={"Browse"}>
+      <Section idValue={"Give_Aways"}>
         <Header>Give Aways</Header>
         <CardsCaraousel />
       </Section>
 
-      <Section idValue={"All"}>
+      <Section idValue={"All_Games"}>
         <Header>All Games</Header>
         <FreeToGamesGrid />
       </Section>

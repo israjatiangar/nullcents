@@ -73,6 +73,7 @@ export default function FreeToGamesGrid() {
           <FreeToGamesCard card={card} key={index} />
         ))}
       </div>
+
       <button
         className="btn btn-primary my-2 w-fit"
         onClick={() => changeDisplayListLength()}

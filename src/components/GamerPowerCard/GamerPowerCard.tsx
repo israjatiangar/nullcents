@@ -1,17 +1,8 @@
-import {
-  getLocaleDateString,
-  getLocaleTimeString,
-} from "../../utilities/DateAndTimeHelper";
-import BookmarkButton from "../BookmarkButton";
+import { getLocaleDateString } from "../../utilities/DateAndTimeHelper";
+import FavouriteButton from "../FavouriteButton";
 
 /** Return Daisy UI Cards with type typGamerPower  */
-export default function GamerPowerCard({
-  game,
-  isBookmarked,
-}: {
-  game: typGamerPower;
-  isBookmarked: boolean;
-}) {
+export default function GamerPowerCard({ game }: { game: typGamerPower }) {
   return (
     <article className="card relative w-2xs justify-items-stretch shadow-sm md:w-sm hover:[&_img]:scale-105">
       <figure className="rounded-selector relative object-cover">
@@ -51,7 +42,7 @@ export default function GamerPowerCard({
         </p>
       </div>
 
-      <BookmarkButton id={game.id} isBookmarked={isBookmarked} />
+      <FavouriteButton className={"absolute top-2 right-2"} id={game.id} />
     </article>
   );
 }

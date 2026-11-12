@@ -5,6 +5,7 @@ import {
   sortByDate,
 } from "../../utilities/DateAndTimeHelper";
 import { GamesListContext } from "../../contexts/GamesListContext";
+import FavouriteButton from "../FavouriteButton";
 
 export default function HeroBanner() {
   const now = getCurrentDate();
@@ -72,6 +73,7 @@ export default function HeroBanner() {
             <p className="line-clamp-3 text-pretty">{featured.description}</p>
           </div>
           <div className="flex gap-2">
+            <FavouriteButton id={featured.id} />
             <a
               className="btn btn-soft btn-primary"
               href={featured.open_giveaway_url}
