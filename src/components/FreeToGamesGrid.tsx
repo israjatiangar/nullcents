@@ -38,7 +38,7 @@ export default function FreeToGamesGrid() {
             return filteredItems.every((item) => platforms.includes(item));
           });
     return filtered.slice(0, cardCount);
-  }, [filteredItems, cardCount]);
+  }, [cardCount, freeToGamesList, filteredItems]);
 
   function changeDisplayListLength() {
     setCardCount((prevCardsCount) =>

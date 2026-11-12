@@ -2,9 +2,9 @@ export default function FreeToGamesCard({ card }: { card: typFreeToGames }) {
   return (
     card && (
       <div className="card sm:card-side bg-base-200 hover:outline-primary overflow-clip outline-1 duration-200 hover:outline-2 hover:[&_img]:scale-105">
-        <figure className="aspect-square max-w-1/2 overflow-clip">
+        <figure className="h-fit max-w-full overflow-clip sm:aspect-square md:w-1/2">
           <img
-            className="h-full w-auto duration-300"
+            className="w-full duration-300 sm:w-auto"
             src={card.thumbnail}
             alt="Movie"
             loading="lazy"

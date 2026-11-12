@@ -16,7 +16,7 @@ export default function HomePage() {
 
   return (
     <>
-      <title>NullCents | HomePage</title>
+      <title>NullCents | Home</title>
       <h1 className="hidden read-only:visible">Home Page</h1>
 
       <Section idValue={"Featured"}>

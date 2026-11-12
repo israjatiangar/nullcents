@@ -11,14 +11,20 @@ export default function FavouritePage() {
     favouriteList.includes(game.id),
   );
   return (
-    favouriteGames.length !== 0 && (
-      <Section>
-        <div className="grid grid-cols-3 gap-6">
-          {favouriteGames.map((favGame) => (
-            <GamerPowerCard game={favGame} />
-          ))}
-        </div>
-      </Section>
-    )
+    <>
+      <title>NullCents | Favourites</title>
+      {favouriteGames.length !== 0 && (
+        <Section>
+          <header className="p-4">
+            <h2 className="text-4xl font-bold">Your Favourites</h2>
+          </header>
+          <div className="mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+            {favouriteGames.map((favGame) => (
+              <GamerPowerCard game={favGame} />
+            ))}
+          </div>
+        </Section>
+      )}
+    </>
   );
 }
