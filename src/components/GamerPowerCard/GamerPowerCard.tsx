@@ -32,7 +32,16 @@ export default function GamerPowerCard({
           )}
         </span>
         <p>
-          {`Offer ends on ${getLocaleDateString(game.end_date)} at ${getLocaleTimeString(game.end_date)}`}
+          {game.end_date !== "N/A" ? (
+            <span>
+              Offer ends on&nbsp;
+              <strong className="text-primary">
+                {getLocaleDateString(game.end_date)}
+              </strong>
+            </span>
+          ) : (
+            <span className="text-warning">End Date Unavailable </span>
+          )}
           <br />
           <span className="text-xs">
             Already Claimed by

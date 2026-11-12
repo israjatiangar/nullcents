@@ -11,13 +11,12 @@ export const GamesListContext = createContext<typGameListContext>({
 });
 
 export default function GamesListContextProvider({ children }) {
-
   const [freeToGamesList, setFreeToGamesList] = useState<typFreeToGames[] | []>(
     [],
   );
   const [gamerPowerList, setGamerPowerList] = useState<typGamerPower[] | []>(
     [],
-  );
+	);
 
   useEffect(() => {
     const controller = new AbortController();

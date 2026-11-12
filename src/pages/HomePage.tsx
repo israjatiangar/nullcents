@@ -3,7 +3,7 @@ import HeroBannerSkeleton from "../components/HeroBanner/HeroBannerSkeleton";
 import Section from "../components/Section";
 const HeroBanner = lazy(() => import("../components/HeroBanner/HeroBanner"));
 import CardsCaraousel from "../components/CardsCaraousel";
-import FreeToGamesCard from "../components/FreeToGamesCard";
+import FreeToGamesGrid from "../components/FreeToGamesGrid";
 
 export default function HomePage() {
   function Header({ children }) {
@@ -13,7 +13,6 @@ export default function HomePage() {
       </header>
     );
   }
-  const Dummy = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   return (
     <>
@@ -27,17 +26,13 @@ export default function HomePage() {
       </Section>
 
       <Section idValue={"Browse"}>
-        <Header>Browse</Header>
+        <Header>Give Aways</Header>
         <CardsCaraousel />
       </Section>
 
       <Section idValue={"All"}>
         <Header>All Games</Header>
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-          {Dummy.map((_, index) => (
-            <FreeToGamesCard key={index} count={index} />
-          ))}
-        </div>
+        <FreeToGamesGrid />
       </Section>
     </>
   );

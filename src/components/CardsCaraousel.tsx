@@ -18,7 +18,7 @@ export default function CardsCaraousel() {
           gamerPowerList.map((game, index) => {
             return (
               index < 10 && (
-                <Suspense fallback={<GamerPowerCardSkeleton />}>
+                <Suspense key={index} fallback={<GamerPowerCardSkeleton />}>
                   <div className="carousel-item" key={index}>
                     <GamerPowerCard
                       game={game}

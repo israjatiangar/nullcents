@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import {
   getCurrentDate,
   getLocaleDateString,
-  getLocaleTimeString,
   sortByDate,
 } from "../../utilities/DateAndTimeHelper";
 import { GamesListContext } from "../../contexts/GamesListContext";
@@ -55,16 +54,20 @@ export default function HeroBanner() {
           </header>
           <div className="mb-2 flex flex-col gap-2">
             <div className="flex gap-2">
-              {featured.platforms.split(",").map((item) => {
-                return <span className="badge badge-info">{item}</span>;
+              {featured.platforms.split(",").map((item, index) => {
+                return (
+                  <span className="badge badge-info" key={index}>
+                    {item}
+                  </span>
+                );
               })}
             </div>
             <span className="badge badge-sm badge-primary badge-outline">
-              Offer ends:
+              Offer ends:&nbsp;
               {getLocaleDateString(featured.end_date) ===
               getLocaleDateString(now.toString())
                 ? `${getLocaleDateString(featured.end_date)}`
-                : `Today at ${getLocaleTimeString(featured.end_date)}`}
+                : `Today`}
             </span>
             <p className="line-clamp-3 text-pretty">{featured.description}</p>
           </div>

@@ -1,53 +1,57 @@
-import { useContext } from "react";
-import { GamesListContext } from "../contexts/GamesListContext";
-
-export default function FreeToGamesCard({ count }) {
-  const { freeToGamesList } = useContext(GamesListContext);
-  let Card = freeToGamesList[count];
+export default function FreeToGamesCard({ card }: { card: typFreeToGames }) {
   return (
-    Card && (
+    card && (
       <div className="card sm:card-side bg-base-200 hover:outline-primary overflow-clip outline-1 duration-200 hover:outline-2 hover:[&_img]:scale-105">
-        <figure className="min-w-1/2">
+        <figure className="aspect-square max-w-1/2 overflow-clip">
           <img
-            className="aspect-auto w-full object-cover duration-300"
-            src={Card.thumbnail}
+            className="h-full w-auto duration-300"
+            src={card.thumbnail}
             alt="Movie"
+            loading="lazy"
           />
         </figure>
         <div className="card-body">
-          <h2 className="card-title line-clamp-1">{Card.title}</h2>
+          <h2 className="card-title line-clamp-1">{card.title}</h2>
           <p className="space-y-2 text-xs text-pretty">
-            <span className="badge badge-sm badge-primary badge-soft">
-              {Card.platform}
-            </span>
+            {card.platform.split(",").map((item, index) => (
+              <>
+                <span
+                  className="badge badge-sm badge-primary badge-soft"
+                  key={index}
+                >
+                  {item}
+                </span>
+                &nbsp;
+              </>
+            ))}
             <br />
-            {Card.publisher === Card.developer ? (
+            {card.publisher === card.developer ? (
               <span>
                 Developed And Published by{" "}
-                <strong className="text-primary">{Card.publisher}</strong>
+                <strong className="text-primary">{card.publisher}</strong>
               </span>
             ) : (
               <>
                 <span>
                   Published by{" "}
-                  <strong className="text-primary">{Card.publisher}</strong>
+                  <strong className="text-primary">{card.publisher}</strong>
                 </span>
                 <br />
                 <span>
                   Developed by{" "}
-                  <strong className="text-primary">{Card.developer}</strong>
+                  <strong className="text-primary">{card.developer}</strong>
                 </span>
               </>
             )}
           </p>
-          <p className="line-clamp-4 text-pretty">{Card.short_description}</p>
+          <p className="line-clamp-4 text-pretty">{card.short_description}</p>
           <div className="card-actions sm:justify-end">
-            <a className="btn btn-primary" href={Card.game_url} target="_blank">
+            <a className="btn btn-primary" href={card.game_url} target="_blank">
               See Game
             </a>
             <a
               className="btn btn-soft"
-              href={Card.freetogame_profile_url}
+              href={card.freetogame_profile_url}
               target="_blank"
             >
               View More

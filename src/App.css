@@ -2,3 +2,6 @@
 @plugin "daisyui" {
   themes: forest --default --prefersdark;
 }
+html {
+  interpolate-size: allow-keywords;
+}
