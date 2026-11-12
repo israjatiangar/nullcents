@@ -4,8 +4,8 @@ import FavouriteButton from "../FavouriteButton";
 /** Return Daisy UI Cards with type typGamerPower  */
 export default function GamerPowerCard({ game }: { game: typGamerPower }) {
   return (
-    <article className="card relative w-2xs justify-items-stretch shadow-sm md:w-sm hover:[&_img]:scale-105">
-      <figure className="rounded-selector relative object-cover">
+    <article className="card relative w-full shadow-sm md:w-sm hover:[&_img]:scale-105">
+      <figure className="rounded-selector object-cover">
         <img
           className="w-full object-cover duration-300"
           src={game.thumbnail}

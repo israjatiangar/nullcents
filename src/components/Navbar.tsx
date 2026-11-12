@@ -1,11 +1,12 @@
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 export default function Navbar() {
   // #region Links
   const navLinks = [
-    { name: "Featured", link: "#Featured" },
-    { name: "Give Aways", link: "#Give_Aways" },
-    { name: "All Games", link: "#All_Games" },
+    { name: "Featured", path: "/", hash: "#Featured" },
+    { name: "Give Aways", path: "/", hash: "#Give_Aways" },
+    { name: "All Games", path: "/", hash: "#All_Games" },
+    { name: "My Favourites", path: "favourites", hash: "" },
   ];
   // #endregion
 
@@ -25,8 +26,8 @@ export default function Navbar() {
                 <li key={index}>
                   <a
                     className="btn-ghost btn"
-                    onClick={() => navigateTo("/")}
-                    href={item.link}
+                    href={item.hash !== "" && item.hash}
+                    onClick={() => navigateTo(item.path)}
                   >
                     {item.name}
                   </a>
