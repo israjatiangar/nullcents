@@ -1,5 +1,9 @@
 import { ListIcon } from "@phosphor-icons/react/dist/ssr";
+import { lazy } from "react";
 import { useNavigate } from "react-router";
+const AccountHandlerPopup = lazy(
+  () => import("./AccountHandlerForm/AccountHandlerPopup"),
+);
 
 export default function Navbar() {
   // #region Links
@@ -39,7 +43,14 @@ export default function Navbar() {
               );
             })}
             <li>
-              <button className="btn btn-soft btn-accent">Sign In</button>
+              <button
+                className="btn btn-soft btn-accent"
+                //@ts-ignore
+                command="toggle-popover"
+                commandFor="Account_Handler_Form"
+              >
+                Sign In
+              </button>
             </li>
           </menu>
           <div>
@@ -50,32 +61,41 @@ export default function Navbar() {
             >
               <ListIcon size={"1rem"} />
             </button>
-
-            <menu
-              className="dropdown menu rounded-box dropdown-end sm:menu-lg mt-2 w-52 bg-neutral-800 shadow-sm"
+            <div
+              className="dropdown dropdown-end rounded-box mt-2 w-52 bg-neutral-800 shadow-sm md:hidden"
               popover="auto"
               id="navMenu"
               style={{ positionAnchor: "navMenu" }}
             >
-              {navLinks.map((item, index) => {
-                return (
-                  <li key={index}>
-                    <a
-                      className="btn-ghost btn"
-                      href={item.hash !== "" && item.hash}
-                      onClick={() => navigateTo(item.path)}
-                    >
-                      {item.name}
-                    </a>
-                  </li>
-                );
-              })}
-              <li>
-                <button className="btn btn-soft btn-accent">Sign In</button>
-              </li>
-            </menu>
+              <menu className="menu sm:menu-lg w-full">
+                {navLinks.map((item, index) => {
+                  return (
+                    <li key={index}>
+                      <a
+                        className="btn-ghost btn"
+                        href={item.hash !== "" && item.hash}
+                        onClick={() => navigateTo(item.path)}
+                      >
+                        {item.name}
+                      </a>
+                    </li>
+                  );
+                })}
+                <li>
+                  <button
+                    className="btn btn-soft btn-accent"
+                    //@ts-ignore
+                    command="toggle-popover"
+                    commandfor="Account_Handler_Form"
+                  >
+                    Sign In
+                  </button>
+                </li>
+              </menu>
+            </div>
           </div>
         </span>
+        <AccountHandlerPopup id={"Account_Handler_Form"} />
       </nav>
     </header>
   );

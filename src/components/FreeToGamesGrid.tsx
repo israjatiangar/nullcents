@@ -1,8 +1,10 @@
-import { useContext, useMemo, useState } from "react";
-import FreeToGamesCard from "./FreeToGamesCard";
+import { lazy, Suspense, useContext, useMemo, useState } from "react";
+// import FreeToGamesCard from "./FreeToGamesCard/FreeToGamesCard";
+const FreeToGamesCard = lazy(() => import("./FreeToGamesCard/FreeToGamesCard"));
 import { GamesListContext } from "../contexts/GamesListContext";
 import { ArrowUpIcon } from "@phosphor-icons/react";
 import { ArrowDownIcon } from "@phosphor-icons/react/dist/ssr";
+import FreeToGamesCardSkeleton from "./FreeToGamesCard/FreeToGamesCardSkeleton";
 
 export default function FreeToGamesGrid() {
   const [cardCount, setCardCount] = useState(20);
@@ -70,7 +72,9 @@ export default function FreeToGamesGrid() {
       </form>
       <div className="grid grid-cols-1 gap-4 transition-all transition-discrete duration-300 lg:grid-cols-2">
         {displayCardsList.map((card, index) => (
-          <FreeToGamesCard card={card} key={index} />
+          <Suspense key={index} fallback={<FreeToGamesCardSkeleton />}>
+            <FreeToGamesCard card={card} />
+          </Suspense>
         ))}
       </div>
 
