@@ -1,4 +1,4 @@
-# ${Null}Cents
+# nullcents
 
 A website that shows all available
 giveaways of games using API from GamerPower,
