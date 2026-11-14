@@ -4,21 +4,21 @@ import { HeartIcon } from "@phosphor-icons/react";
 import { HeartBreakIcon } from "@phosphor-icons/react/dist/ssr";
 
 export default function FavouriteButton({
-  id,
+  apiName,
+  GameId,
   className = "",
 }: {
-  id: number;
-  className: string;
+  apiName: typApiName;
+  GameId: number;
+  className?: string;
 }) {
   const { favouriteList, toggleFavourite } = useContext(FavouriteContext);
-  const isFavourite = favouriteList.includes(id);
+  const isFavourite =
+    favouriteList.has(apiName) && favouriteList.get(apiName).includes(GameId);
   return (
     <button
-      className={`btn btn-soft btn-accent btn-square duration-75 active:scale-110 ${className} ${isFavourite && "btn-active"} ${isFavourite && `hover:[&_.heart-icon]:hidden hover:[&_.heartbreak-icon]:inline-block`}`}
-      onClick={() => {
-        console.log(favouriteList);
-        return toggleFavourite(id);
-      }}
+      className={`btn btn-soft btn-accent btn-square transition active:scale-110 ${className} ${isFavourite && "btn-active"} ${isFavourite && `hover:[&_.heart-icon]:hidden hover:[&_.heartbreak-icon]:inline-block`}`}
+      onClick={() => toggleFavourite(apiName, GameId)}
     >
       <HeartIcon
         className="heart-icon inline-block"
@@ -27,7 +27,7 @@ export default function FavouriteButton({
       />
       <HeartBreakIcon
         className="heartbreak-icon hidden"
-        weight={isFavourite ? `fill` : `duotone`}
+        weight="fill"
         size={24}
       />
     </button>

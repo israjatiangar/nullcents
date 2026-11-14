@@ -16,7 +16,7 @@ export default function GamesListContextProvider({ children }) {
   );
   const [gamerPowerList, setGamerPowerList] = useState<typGamerPower[] | []>(
     [],
-	);
+  );
 
   useEffect(() => {
     const controller = new AbortController();

@@ -1,11 +1,12 @@
 import { getLocaleDateString } from "../../utilities/DateAndTimeHelper";
 import FavouriteButton from "../FavouriteButton";
 
+const API_NAME = "GP"; //GP = GamerPower
 /** Return Daisy UI Cards with type typGamerPower  */
 export default function GamerPowerCard({ game }: { game: typGamerPower }) {
   return (
-    <article className="card relative w-full max-w-xs shadow-sm md:max-w-sm hover:[&_img]:scale-105">
-      <figure className="rounded-selector h-full w-xs max-w-full md:w-sm">
+    <article className="card relative w-full max-w-sm shadow-sm hover:[&_img]:scale-105">
+      <figure className="rounded-selector h-full w-full">
         <img
           className="h-full w-full object-cover duration-300"
           src={game.thumbnail}
@@ -42,7 +43,11 @@ export default function GamerPowerCard({ game }: { game: typGamerPower }) {
         </p>
       </div>
 
-      <FavouriteButton className={"absolute top-2 right-2"} id={game.id} />
+      <FavouriteButton
+        className={"absolute top-2 right-2"}
+        apiName={API_NAME}
+        GameId={game.id}
+      />
     </article>
   );
 }

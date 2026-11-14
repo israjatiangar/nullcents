@@ -24,7 +24,7 @@ export default function Navbar() {
             onClick={() => navigateTo("/")}
             className="btn btn-soft btn-primary text-xl"
           >
-            <span>Nullcents</span>
+            <span className="inline-block font-mono">Null Cents</span>
           </a>
         </span>
         <span className="flex flex-none">

@@ -1,16 +1,20 @@
+import FavouriteButton from "../FavouriteButton";
+
+const API_NAME = "FTG"; //FTG = FreeToGame
+
 export default function FreeToGamesCard({ card }: { card: typFreeToGames }) {
   return (
     card && (
-      <div className="card sm:card-side bg-base-200 hover:outline-primary overflow-clip outline-1 duration-200 hover:outline-2 hover:[&_img]:scale-105">
-        <figure className="h-fit max-w-full overflow-clip sm:aspect-square md:w-1/2">
+      <article className="card sm:card-side bg-base-200 hover:outline-primary max-h-auto relative overflow-clip outline-1 duration-200 hover:outline-2 hover:[&_img]:scale-105">
+        <figure className="flex-1 overflow-clip md:aspect-square">
           <img
-            className="w-full duration-300 sm:w-auto"
+            className="h-full w-full object-cover duration-300"
             src={card.thumbnail}
             alt="Movie"
             loading="lazy"
           />
         </figure>
-        <div className="card-body">
+        <div className="card-body flex-1">
           <h2 className="card-title line-clamp-1">{card.title}</h2>
           <p className="space-y-2 text-xs text-pretty">
             {card.platform.split(",").map((item, index) => (
@@ -58,7 +62,12 @@ export default function FreeToGamesCard({ card }: { card: typFreeToGames }) {
             </a>
           </div>
         </div>
-      </div>
+        <FavouriteButton
+          className="absolute top-2 left-2"
+          apiName={API_NAME}
+          GameId={card.id}
+        />
+      </article>
     )
   );
 }

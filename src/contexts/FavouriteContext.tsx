@@ -1,37 +1,46 @@
 import { createContext, useEffect, useState } from "react";
 
+type typFavouriteList = Map<typApiName, Array<number | null>>;
+
 type typFavouriteContext = {
-  favouriteList: Array<number>;
-  toggleFavourite: (id: number) => void;
+  favouriteList: typFavouriteList;
+  toggleFavourite: (apiName: typApiName, id: number) => void;
 };
 
 export const FavouriteContext = createContext<typFavouriteContext>({
-  favouriteList: [],
+  favouriteList: new Map(),
   toggleFavourite: () => {},
 });
 
 export default function FavouriteContextProvider({ children }) {
-  const [favouriteList, setFavouriteList] = useState([]);
+  const [favouriteList, setFavouriteList] = useState<typFavouriteList>(
+    new Map(),
+  );
 
   useEffect(() => {
     const abort = new AbortController().abort();
     const localFavouriteList =
-      JSON.parse(localStorage.getItem("favouriteList")) ?? [];
+      new Map(JSON.parse(localStorage.getItem("favouriteList"))) ?? new Map();
     setFavouriteList(localFavouriteList);
     return () => abort;
   }, []);
 
-  function toggleFavourite(id: number): void {
+  function toggleFavourite(apiName: typApiName, id: number): void {
     let newFavouriteList: Array<number> = [];
-    if (favouriteList.includes(id)) {
-      newFavouriteList = favouriteList.filter((favId) => {
+    if (!favouriteList.has(apiName)) {
+      newFavouriteList = [id];
+    } else if (favouriteList.get(apiName).includes(id)) {
+      newFavouriteList = favouriteList.get(apiName).filter((favId: number) => {
         return favId !== id;
       });
     } else {
-      newFavouriteList = [...favouriteList, id];
+      newFavouriteList = [...favouriteList.get(apiName), id];
     }
-    localStorage.setItem("favouriteList", JSON.stringify(newFavouriteList));
-    setFavouriteList(newFavouriteList);
+    setFavouriteList((prevFav) => {
+      const newFav = new Map([...prevFav, [apiName, newFavouriteList]]);
+      localStorage.setItem("favouriteList", JSON.stringify([...newFav]));
+      return newFav;
+    });
   }
   return (
     <FavouriteContext.Provider

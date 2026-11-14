@@ -1,3 +1,5 @@
+type typApiName = "GP" | "FTG";
+
 type typFreeToGames = {
   id: number;
   title: string;
