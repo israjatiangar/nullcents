@@ -13,6 +13,29 @@ export default function Navbar() {
     { name: "All Games", path: "/", hash: "#All_Games" },
     { name: "My Favourites", path: "favourites", hash: "" },
   ];
+
+  function makeNavLinks() {
+    return navLinks.map((item, index) => {
+      return item.hash === "" ? (
+        <li key={index}>
+          <a className="btn-ghost btn" onClick={() => navigateTo(item.path)}>
+            {item.name}
+          </a>
+        </li>
+      ) : (
+        <li key={index}>
+          <a
+            className="btn-ghost btn"
+            href={item.hash}
+            onClick={() => navigateTo(item.path)}
+          >
+            {item.name}
+          </a>
+        </li>
+      );
+    });
+  }
+
   // #endregion
 
   const navigateTo = useNavigate();
@@ -29,19 +52,7 @@ export default function Navbar() {
         </span>
         <span className="flex flex-none">
           <menu className="hidden list-none md:flex">
-            {navLinks.map((item, index) => {
-              return (
-                <li key={index}>
-                  <a
-                    className="btn-ghost btn"
-                    href={item.hash !== "" && item.hash}
-                    onClick={() => navigateTo(item.path)}
-                  >
-                    {item.name}
-                  </a>
-                </li>
-              );
-            })}
+            {makeNavLinks()}
             <li>
               <button
                 className="btn btn-soft btn-accent"
@@ -68,19 +79,7 @@ export default function Navbar() {
               style={{ positionAnchor: "navMenu" }}
             >
               <menu className="menu sm:menu-lg w-full">
-                {navLinks.map((item, index) => {
-                  return (
-                    <li key={index}>
-                      <a
-                        className="btn-ghost btn"
-                        href={item.hash !== "" && item.hash}
-                        onClick={() => navigateTo(item.path)}
-                      >
-                        {item.name}
-                      </a>
-                    </li>
-                  );
-                })}
+                {makeNavLinks()}
                 <li>
                   <button
                     className="btn btn-soft btn-accent"

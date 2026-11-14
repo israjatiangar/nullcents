@@ -14,7 +14,7 @@ export default function FavouriteButton({
 }) {
   const { favouriteList, toggleFavourite } = useContext(FavouriteContext);
   const isFavourite =
-    favouriteList.has(apiName) && favouriteList.get(apiName).includes(GameId);
+    favouriteList.has(apiName) && favouriteList.get(apiName)?.includes(GameId);
   return (
     <button
       className={`btn btn-soft btn-accent btn-square transition active:scale-110 ${className} ${isFavourite && "btn-active"} ${isFavourite && `hover:[&_.heart-icon]:hidden hover:[&_.heartbreak-icon]:inline-block`}`}

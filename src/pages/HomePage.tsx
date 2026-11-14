@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, type PropsWithChildren } from "react";
 import HeroBannerSkeleton from "../components/HeroBanner/HeroBannerSkeleton";
 import Section from "../components/Section";
 const HeroBanner = lazy(() => import("../components/HeroBanner/HeroBanner"));
@@ -6,7 +6,7 @@ import CardsCaraousel from "../components/CardsCaraousel";
 import FreeToGamesGrid from "../components/FreeToGamesGrid";
 
 export default function HomePage() {
-  function Header({ children }) {
+  function Header({ children }: PropsWithChildren) {
     return (
       <header className="py-4">
         <h2 className="text-4xl font-bold">{children}</h2>

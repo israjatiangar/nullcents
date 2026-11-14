@@ -6,7 +6,7 @@ import Footer from "./components/Footer";
 import FavouritePage from "./pages/FavouritePage";
 import Error404Page from "./pages/Error404Page";
 export default function App() {
-  document.querySelector("html").className =
+  document.querySelector("html")!.className =
     "motion-safe:scroll-smooth scrollbar-gutter-stable";
   return (
     <>

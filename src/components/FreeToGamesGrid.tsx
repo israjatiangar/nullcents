@@ -9,7 +9,7 @@ import FreeToGamesCardSkeleton from "./FreeToGamesCard/FreeToGamesCardSkeleton";
 export default function FreeToGamesGrid() {
   const [cardCount, setCardCount] = useState(20);
   const { freeToGamesList } = useContext(GamesListContext);
-  const [filteredItems, setFilteredItems] = useState([]);
+  const [filteredItems, setFilteredItems] = useState<Array<string>>([]);
   const platformName = [
     ...new Set(
       freeToGamesList.flatMap((item) =>

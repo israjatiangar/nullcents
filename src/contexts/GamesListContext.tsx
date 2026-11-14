@@ -1,4 +1,9 @@
-import { createContext, useEffect, useState } from "react";
+import {
+  createContext,
+  useEffect,
+  useState,
+  type PropsWithChildren,
+} from "react";
 import { fetchDataFromAPILink, getAPIfromLocal } from "../utilities/apiHelper";
 
 type typGameListContext = {
@@ -10,7 +15,9 @@ export const GamesListContext = createContext<typGameListContext>({
   gamerPowerList: [],
 });
 
-export default function GamesListContextProvider({ children }) {
+export default function GamesListContextProvider({
+  children,
+}: PropsWithChildren) {
   const [freeToGamesList, setFreeToGamesList] = useState<typFreeToGames[] | []>(
     [],
   );

@@ -8,6 +8,7 @@ import { GamesListContext } from "../../contexts/GamesListContext";
 import FavouriteButton from "../FavouriteButton";
 
 export default function HeroBanner() {
+  const API_NAME = "GP"; //GamerPower
   const now = getCurrentDate();
   const { gamerPowerList } = useContext(GamesListContext);
   let HeroBannerList: Array<typGamerPower> = gamerPowerList;
@@ -73,7 +74,7 @@ export default function HeroBanner() {
             <p className="line-clamp-3 text-pretty">{featured.description}</p>
           </div>
           <div className="flex gap-2">
-            <FavouriteButton id={featured.id} />
+            <FavouriteButton apiName={API_NAME} GameId={featured.id} />
             <a
               className="btn btn-soft btn-primary"
               href={featured.open_giveaway_url}

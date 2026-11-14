@@ -1,4 +1,9 @@
-import { createContext, useEffect, useState } from "react";
+import {
+  createContext,
+  useEffect,
+  useState,
+  type PropsWithChildren,
+} from "react";
 
 type typFavouriteList = Map<typApiName, Array<number | null>>;
 
@@ -12,7 +17,9 @@ export const FavouriteContext = createContext<typFavouriteContext>({
   toggleFavourite: () => {},
 });
 
-export default function FavouriteContextProvider({ children }) {
+export default function FavouriteContextProvider({
+  children,
+}: PropsWithChildren) {
   const [favouriteList, setFavouriteList] = useState<typFavouriteList>(
     new Map(),
   );
@@ -20,22 +27,19 @@ export default function FavouriteContextProvider({ children }) {
   useEffect(() => {
     const abort = new AbortController().abort();
     const localFavouriteList =
-      new Map(JSON.parse(localStorage.getItem("favouriteList"))) ?? new Map();
+      localStorage.getItem("favouriteList") !== null
+        ? new Map(JSON.parse(String(localStorage.getItem("favouriteList"))))
+        : new Map();
     setFavouriteList(localFavouriteList);
     return () => abort;
   }, []);
 
   function toggleFavourite(apiName: typApiName, id: number): void {
-    let newFavouriteList: Array<number> = [];
-    if (!favouriteList.has(apiName)) {
-      newFavouriteList = [id];
-    } else if (favouriteList.get(apiName).includes(id)) {
-      newFavouriteList = favouriteList.get(apiName).filter((favId: number) => {
-        return favId !== id;
-      });
-    } else {
-      newFavouriteList = [...favouriteList.get(apiName), id];
-    }
+    const existing = favouriteList.get(apiName) ?? [];
+    const newFavouriteList = existing.includes(id)
+      ? existing.filter((favId) => favId !== id)
+      : [...existing, id];
+
     setFavouriteList((prevFav) => {
       const newFav = new Map([...prevFav, [apiName, newFavouriteList]]);
       localStorage.setItem("favouriteList", JSON.stringify([...newFav]));
