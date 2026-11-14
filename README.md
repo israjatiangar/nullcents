@@ -1,75 +1,51 @@
-# React + TypeScript + Vite
+# ${Null}Cents
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A website that shows all available
+giveaways of games using API from GamerPower,
+and also lists all games using API from FreeToGame.
 
-Currently, two official plugins are available:
+## Tech-stack I used and why
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React : A popular library for building user interfaces,
+  and the frontend technology I learned
 
-## React Compiler
+- TypeScript: JavaScript with types,
+  which helps catch errors and
+  provides useful editor autocompletes
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Vite : A fast development server and build tool
 
-## Expanding the ESLint configuration
+- pnpm : Npm takes too much space
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- React-Router : Handles navigation between pages in the app
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Tailwind CSS : Speeds up styling with utility classes
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- daisyUI : Provides ready-made, themeable components for Tailwind CSS
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## How I use the APIs
 
-```
+Although FreeToGame and GamerPower are very generous,
+they rightfully limit the number of requests an IP can make per second (to around 10).
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+## How I use localStorage
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **API cache:** Fetched data is stored with a 10-minute expiration[^1], so the
+  site makes fewer network calls and loads faster
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- **Favourites:** Since I'm storing games from two different APIs, I use a Map
+  with the API name as the key and an array of game IDs as the value. I store
+  only IDs because I'm already caching full objects from two large APIs and
+  don't want to bloat the storage.
 
-```
+[^1]: That felt like a reasonable amount of time to store api data without it going stale.
+
+## API Credits
+
+- [GamerPower](https://www.gamerpower.com/) for their free API
+- [FreeToGame](https://www.freetogame.com/) for their free API
+
+---
+
+Made with ❤️ by [Rajat Iangar](https://github.com/israjatiangar)\
+`🤖 used for editing this README and for git message body`
