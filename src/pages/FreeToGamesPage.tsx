@@ -14,7 +14,7 @@ export default function FreeToGamesPage() {
   useEffect(() => {
     const totalPages = Math.ceil(freeToGamesList.length / DISPLAY_NUMBER);
     const newPagination: Array<number> = [];
-    for (let i = 0; i <= totalPages; i++) {
+    for (let i = 0; i < totalPages; i++) {
       newPagination.push(i);
     }
     setPagination(newPagination);
@@ -39,6 +39,9 @@ export default function FreeToGamesPage() {
   };
   return (
     <Section className="place-items-center space-y-4">
+      <header className="w-full">
+        <h2 className="text-4xl font-bold">Free To Play</h2>
+      </header>
       <div className="grid grid-cols-1 gap-4 transition-all transition-discrete duration-300 lg:grid-cols-2">
         {displayList.map((card, index) => (
           <Suspense fallback={<FreeToGamesCardSkeleton />} key={index}>

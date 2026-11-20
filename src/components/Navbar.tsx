@@ -9,8 +9,8 @@ export default function Navbar() {
   // #region Links
   const navLinks = [
     { name: "Featured", path: "/", hash: "#Featured" },
-    { name: "Give Aways", path: "/", hash: "#Give_Aways" },
-    { name: "All Games", path: "/", hash: "#All_Games" },
+    { name: "Give Aways", path: "/giveaways", hash: "" },
+    { name: "Free To Play", path: "/freeToPlay", hash: "" },
     { name: "My Favourites", path: "favourites", hash: "" },
   ];
 

@@ -26,12 +26,12 @@ export default function FavouritePage() {
         <h2 className="text-4xl font-bold">Your Favourites</h2>
       </header>
 
-      <Section className="bg-base-200 rounded-field space-y-4 py-2">
+      <Section className="bg-base-200 rounded-field space-y-4 py-4">
         <header className="p-4">
-          <h2 className="text-2xl font-bold text-balance">From Gamer Power</h2>
+          <h2 className="text-2xl font-bold text-balance">Give Aways</h2>
         </header>
         {favouriteGamePower.length !== 0 ? (
-          <div className="mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+          <div className="mx-auto grid grid-cols-1 gap-4 px-2 sm:grid-cols-2 md:grid-cols-3">
             {favouriteGamePower.map((favGame) => (
               <GamerPowerCard game={favGame} />
             ))}
@@ -53,7 +53,7 @@ export default function FavouritePage() {
       </Section>
       <Section>
         <header className="p-4">
-          <h2 className="text-2xl font-bold">From FreeToGames</h2>
+          <h2 className="text-2xl font-bold">Free To Play</h2>
         </header>
         {favouriteFreeToGame.length !== 0 ? (
           <div className="mx-auto grid grid-cols-1 gap-4 lg:grid-cols-2">

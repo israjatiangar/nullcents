@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import FavouritePage from "./pages/FavouritePage";
 import Error404Page from "./pages/Error404Page";
 import FreeToGamesPage from "./pages/FreeToGamesPage";
+import GamerPowerPage from "./pages/GamerPowerPage";
 export default function App() {
   document.querySelector("html")!.className =
     "motion-safe:scroll-smooth scrollbar-gutter-stable";
@@ -16,7 +17,8 @@ export default function App() {
         <Routes>
           <Route index element={<HomePage />} />
           <Route path="/favourites" element={<FavouritePage />} />
-          <Route path="/freeToGames" element={<FreeToGamesPage />} />
+          <Route path="/freeToPlay" element={<FreeToGamesPage />} />
+          <Route path="/giveaways" element={<GamerPowerPage />} />
           <Route path="/*" element={<Error404Page />} />
         </Routes>
       </main>
