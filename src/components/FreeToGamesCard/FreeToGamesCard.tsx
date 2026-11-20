@@ -16,17 +16,14 @@ export default function FreeToGamesCard({ card }: { card: typFreeToGames }) {
         </figure>
         <div className="card-body flex-1">
           <h2 className="card-title line-clamp-1">{card.title}</h2>
-          <p className="space-y-2 text-xs text-pretty">
+          <p className="space-y-2 space-x-2 text-xs text-pretty">
             {card.platform.split(",").map((item, index) => (
-              <>
-                <span
-                  className="badge badge-sm badge-primary badge-soft"
-                  key={index}
-                >
-                  {item}
-                </span>
-                &nbsp;
-              </>
+              <span
+                className="badge badge-sm badge-primary badge-soft"
+                key={index}
+              >
+                {item}
+              </span>
             ))}
             <br />
             {card.publisher === card.developer ? (
