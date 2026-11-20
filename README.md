@@ -4,6 +4,14 @@ A website that shows all available
 giveaways of games using API from GamerPower,
 and also lists all games using API from FreeToGame.
 
+**[Live demo](https://nullcents.israjatiangar.workers.dev)**
+
+## Features
+
+- Browse current game giveaways
+- Browse a list of free-to-play games
+- Save favourite games 
+
 ## Tech-stack I used and why
 
 - React : A popular library for building user interfaces,

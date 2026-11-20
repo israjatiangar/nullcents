@@ -42,6 +42,14 @@ export default function GamerPowerCard({ game }: { game: typGamerPower }) {
           </span>
         </p>
       </div>
+      <div className="card-actions">
+        <a className="btn btn-soft btn-primary" href={game.open_giveaway_url}>
+          Claim Offer
+        </a>
+        <a className="btn btn-soft btn-neutral" href={game.gamerpower_url}>
+          Learn More
+        </a>
+      </div>
 
       <FavouriteButton
         className={"absolute top-2 right-2"}
