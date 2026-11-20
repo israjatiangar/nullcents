@@ -1,15 +1,18 @@
-import { Suspense, useContext, useEffect, useState } from "react";
+import { lazy, Suspense, useContext, useEffect, useState } from "react";
 import Section from "../components/Section";
 import { GamesListContext } from "../contexts/GamesListContext";
 import FreeToGamesCardSkeleton from "../components/FreeToGamesCard/FreeToGamesCardSkeleton";
-import GamerPowerCard from "../components/GamerPowerCard/GamerPowerCard";
+
+const GamerPowerCard = lazy(
+  () => import("../components/GamerPowerCard/GamerPowerCard"),
+);
 
 export default function FreeToGamesPage() {
   const DISPLAY_NUMBER = 24;
   const [count, setCount] = useState([0, DISPLAY_NUMBER]);
   const { gamerPowerList } = useContext(GamesListContext);
   const displayList = gamerPowerList.slice(count[0], count[1]);
-  const [pagination, setPagination] = useState([]);
+  const [pagination, setPagination]: [Array<number>, Function] = useState([]);
 
   useEffect(() => {
     const totalPages = Math.ceil(gamerPowerList.length / DISPLAY_NUMBER);

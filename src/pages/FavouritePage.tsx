@@ -1,11 +1,18 @@
-import { useContext } from "react";
+import { lazy, Suspense, useContext } from "react";
 import Section from "../components/Section";
 import { FavouriteContext } from "../contexts/FavouriteContext";
 import { GamesListContext } from "../contexts/GamesListContext";
-import GamerPowerCard from "../components/GamerPowerCard/GamerPowerCard";
 import { Link } from "react-router";
 import { HeartBreakIcon } from "@phosphor-icons/react";
-import FreeToGamesCard from "../components/FreeToGamesCard/FreeToGamesCard";
+import GamerPowerCardSkeleton from "../components/GamerPowerCard/GamerPowerCardSkeleton";
+import FreeToGamesCardSkeleton from "../components/FreeToGamesCard/FreeToGamesCardSkeleton";
+
+const GamerPowerCard = lazy(
+  () => import("../components/GamerPowerCard/GamerPowerCard"),
+);
+const FreeToGamesCard = lazy(
+  () => import("../components/FreeToGamesCard/FreeToGamesCard"),
+);
 
 const GAMER_POWER = "GP";
 const FREE_TO_GAME = "FTG";
@@ -32,8 +39,10 @@ export default function FavouritePage() {
         </header>
         {favouriteGamePower.length !== 0 ? (
           <div className="mx-auto grid grid-cols-1 gap-4 px-2 sm:grid-cols-2 md:grid-cols-3">
-            {favouriteGamePower.map((favGame) => (
-              <GamerPowerCard game={favGame} />
+            {favouriteGamePower.map((favGame, index) => (
+              <Suspense fallback={<GamerPowerCardSkeleton />} key={index}>
+                <GamerPowerCard game={favGame} />
+              </Suspense>
             ))}
           </div>
         ) : (
@@ -57,8 +66,10 @@ export default function FavouritePage() {
         </header>
         {favouriteFreeToGame.length !== 0 ? (
           <div className="mx-auto grid grid-cols-1 gap-4 lg:grid-cols-2">
-            {favouriteFreeToGame.map((favGame) => (
-              <FreeToGamesCard card={favGame} />
+            {favouriteFreeToGame.map((favGame, index) => (
+              <Suspense fallback={<FreeToGamesCardSkeleton />} key={index}>
+                <FreeToGamesCard card={favGame} />
+              </Suspense>
             ))}
           </div>
         ) : (
