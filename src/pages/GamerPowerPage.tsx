@@ -52,20 +52,22 @@ export default function FreeToGamesPage() {
           </Suspense>
         ))}
       </div>
-      <div className="join">
-        <button className="join-item btn" onClick={() => Page.change(-1)}>
+      <div className="flex w-full justify-center gap-2">
+        <button className="btn" onClick={() => Page.change(-1)}>
           «
         </button>
-        {pagination.map((item, index) => (
-          <button
-            className={`join-item btn ${item === count[0] / DISPLAY_NUMBER ? "btn-primary" : ""}`}
-            key={index}
-            onClick={() => Page.goto(item)}
-          >
-            {item + 1}
-          </button>
-        ))}
-        <button className="join-item btn" onClick={() => Page.change(1)}>
+        <span className="carousel carousel-start join">
+          {pagination.map((item, index) => (
+            <button
+              className={`carousel-item join-item btn ${item === count[0] / DISPLAY_NUMBER ? "btn-primary" : ""}`}
+              key={index}
+              onClick={() => Page.goto(item)}
+            >
+              {item + 1}
+            </button>
+          ))}
+        </span>
+        <button className="btn" onClick={() => Page.change(1)}>
           »
         </button>
       </div>
