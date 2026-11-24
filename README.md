@@ -8,8 +8,8 @@ and also lists all games using API from FreeToGame.
 
 ## Screenshots
 
-<img src="./public/screenshots/desktop-dark.png" alt="a screenshot of nullcents app on desktop" height="200">
-<img src="./public/screenshots/mobile-dark.png" alt="a screenshot of nullcents app on mobile" height="200">
+<img src="./public/screenshots/desktop-dark.png" alt="a screenshot of nullcents app on desktop" height="250px">
+<img src="./public/screenshots/mobile-dark.png" alt="a screenshot of nullcents app on mobile" height="250px">
 
 Screenshots are located at : [./public/screenshots](./public/screenshots)
 
