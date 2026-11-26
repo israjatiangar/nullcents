@@ -41,36 +41,39 @@ export default function FreeToGamesPage() {
     },
   };
   return (
-    <Section className="place-items-center space-y-4">
-      <header className="w-full">
-        <h2 className="text-4xl font-bold">Giveaways</h2>
-      </header>
-      <div className="grid grid-cols-1 gap-4 transition-all transition-discrete duration-300 sm:grid-cols-2 md:grid-cols-3">
-        {displayList.map((card, index) => (
-          <Suspense fallback={<FreeToGamesCardSkeleton />} key={index}>
-            <GamerPowerCard game={card} key={index} />
-          </Suspense>
-        ))}
-      </div>
-      <div className="flex w-full justify-center gap-2">
-        <button className="btn" onClick={() => Page.change(-1)}>
-          «
-        </button>
-        <span className="carousel carousel-start join">
-          {pagination.map((item, index) => (
-            <button
-              className={`carousel-item join-item btn ${item === count[0] / DISPLAY_NUMBER ? "btn-primary" : ""}`}
-              key={index}
-              onClick={() => Page.goto(item)}
-            >
-              {item + 1}
-            </button>
+    <>
+      <title>GiveAways | Nullcents</title>
+      <Section className="place-items-center space-y-4">
+        <header className="w-full">
+          <h2 className="text-4xl font-bold">Giveaways</h2>
+        </header>
+        <div className="grid grid-cols-1 gap-4 transition-all transition-discrete duration-300 sm:grid-cols-2 md:grid-cols-3">
+          {displayList.map((card, index) => (
+            <Suspense fallback={<FreeToGamesCardSkeleton />} key={index}>
+              <GamerPowerCard game={card} key={index} />
+            </Suspense>
           ))}
-        </span>
-        <button className="btn" onClick={() => Page.change(1)}>
-          »
-        </button>
-      </div>
-    </Section>
+        </div>
+        <div className="flex w-full justify-center gap-2">
+          <button className="btn" onClick={() => Page.change(-1)}>
+            «
+          </button>
+          <span className="carousel carousel-start join">
+            {pagination.map((item, index) => (
+              <button
+                className={`carousel-item join-item btn ${item === count[0] / DISPLAY_NUMBER ? "btn-primary" : ""}`}
+                key={index}
+                onClick={() => Page.goto(item)}
+              >
+                {item + 1}
+              </button>
+            ))}
+          </span>
+          <button className="btn" onClick={() => Page.change(1)}>
+            »
+          </button>
+        </div>
+      </Section>
+    </>
   );
 }
