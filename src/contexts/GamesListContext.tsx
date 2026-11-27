@@ -6,6 +6,10 @@ import {
 } from "react";
 import { fetchDataFromAPILink, getAPIfromLocal } from "../utilities/apiHelper";
 
+const [FREETOGAME_API, GAMERPOWER_API]: [string, string] = [
+  "https://www.freetogame.com/api/games",
+  "https://www.gamerpower.com/api/giveaways",
+];
 type typGameListContext = {
   freeToGamesList: Array<typFreeToGames>;
   gamerPowerList: Array<typGamerPower>;
@@ -29,10 +33,7 @@ export default function GamesListContextProvider({
     const controller = new AbortController();
     const local = getAPIfromLocal("freeToGamesData");
     if (local.error) {
-      fetchDataFromAPILink(
-        "https://www.freetogame.com/api/games",
-        "freeToGamesData",
-      ).then((result) => {
+      fetchDataFromAPILink(FREETOGAME_API, "freeToGamesData").then((result) => {
         if (result.error) {
           console.error(result.error);
         } else {
@@ -50,10 +51,7 @@ export default function GamesListContextProvider({
     const local = getAPIfromLocal("gamerPowerData");
     console.log("gamerPowerList");
     if (local.error) {
-      fetchDataFromAPILink(
-        "https://www.gamerpower.com/api/giveaways",
-        "gamerPowerData",
-      ).then((result) => {
+      fetchDataFromAPILink(GAMERPOWER_API, "gamerPowerData").then((result) => {
         if (result.error) {
           console.error(result.error);
         } else {
