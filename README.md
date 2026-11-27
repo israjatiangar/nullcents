@@ -38,11 +38,6 @@ Screenshots are located at : [./public/screenshots](./public/screenshots)
 
 - daisyUI : Provides ready-made, themeable components for Tailwind CSS
 
-## How I use the APIs
-
-Although FreeToGame and GamerPower are very generous,
-they rightfully limit the number of requests an IP can make per second (to around 10).
-
 ## How I use localStorage
 
 - **API cache:** Fetched data is stored with a 10-minute expiration[^1], so the
