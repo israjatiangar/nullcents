@@ -1,42 +1,33 @@
-import { ListIcon } from "@phosphor-icons/react/dist/ssr";
+import {
+  GameControllerIcon,
+  GiftIcon,
+  HeartIcon,
+  HouseSimpleIcon,
+  type Icon,
+} from "@phosphor-icons/react";
 import { lazy } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 const AccountHandlerPopup = lazy(
   () => import("./AccountHandlerForm/AccountHandlerPopup"),
 );
 
+const navLinks: Array<{ name: string; path: string; icon: Icon }> = [
+  { name: "Home", path: "/", icon: HouseSimpleIcon },
+  { name: "Give Aways", path: "/giveaways", icon: GiftIcon },
+  { name: "Free To Play", path: "/freeToPlay", icon: GameControllerIcon },
+  { name: "My Favourites", path: "/favourites", icon: HeartIcon },
+];
+
 export default function Navbar() {
-  // #region Links
-  const navLinks = [
-    { name: "Featured", path: "/", hash: "#Featured" },
-    { name: "Give Aways", path: "/giveaways", hash: "" },
-    { name: "Free To Play", path: "/freeToPlay", hash: "" },
-    { name: "My Favourites", path: "favourites", hash: "" },
-  ];
-
   function makeNavLinks() {
-    return navLinks.map((item, index) => {
-      return item.hash === "" ? (
-        <li key={index}>
-          <a className="btn-ghost btn" onClick={() => navigateTo(item.path)}>
-            {item.name}
-          </a>
-        </li>
-      ) : (
-        <li key={index}>
-          <a
-            className="btn-ghost btn"
-            href={item.hash}
-            onClick={() => navigateTo(item.path)}
-          >
-            {item.name}
-          </a>
-        </li>
-      );
-    });
+    return navLinks.map((item, index) => (
+      <li key={index}>
+        <a className="btn-ghost btn" onClick={() => navigateTo(item.path)}>
+          {item.name}
+        </a>
+      </li>
+    ));
   }
-
-  // #endregion
 
   const navigateTo = useNavigate();
   return (
@@ -51,51 +42,46 @@ export default function Navbar() {
           </a>
         </span>
         <span className="flex flex-none">
-          <menu className="hidden list-none md:flex">
-            {makeNavLinks()}
-            <li>
-              <button
-                className="btn btn-soft btn-accent"
-                //@ts-ignore
-                command="toggle-popover"
-                commandFor="Account_Handler_Form"
-              >
-                Sign In
-              </button>
-            </li>
-          </menu>
-          <div>
-            <button
-              className="btn md:hidden"
-              popoverTarget="navMenu"
-              style={{ anchorName: "navMenu" }}
-            >
-              <ListIcon size={"1rem"} />
-            </button>
-            <div
-              className="dropdown dropdown-end rounded-box mt-2 w-52 bg-neutral-800 shadow-sm md:hidden"
-              popover="auto"
-              id="navMenu"
-              style={{ positionAnchor: "navMenu" }}
-            >
-              <menu className="menu sm:menu-lg w-full">
-                {makeNavLinks()}
-                <li>
-                  <button
-                    className="btn btn-soft btn-accent"
-                    //@ts-ignore
-                    command="toggle-popover"
-                    commandfor="Account_Handler_Form"
-                  >
-                    Sign In
-                  </button>
-                </li>
-              </menu>
-            </div>
-          </div>
+          <menu className="hidden list-none md:flex">{makeNavLinks()}</menu>
         </span>
         <AccountHandlerPopup id={"Account_Handler_Form"} />
+        <button
+          className="btn btn-soft btn-accent"
+          //@ts-ignore
+          command="toggle-popover"
+          commandFor="Account_Handler_Form"
+        >
+          Sign In
+        </button>
       </nav>
     </header>
+  );
+}
+
+export function NavDock() {
+  const navigateTo = useNavigate();
+  return (
+    <div className="dock bg-base-200 transition **:transition md:hidden">
+      {navLinks.map((item, index) => {
+        const active = useLocation().pathname === item.path;
+        return (
+          <button
+            aria-description={item.name}
+            className={active ? "dock-active text-primary" : ""}
+            key={index}
+            onClick={() => {
+              if (!active) navigateTo(item.path);
+              else scrollTo({ top: 0 });
+            }}
+          >
+            <item.icon
+              className={active ? "-translate-y-1" : ""}
+              size="24"
+              weight={active ? "fill" : "duotone"}
+            />
+          </button>
+        );
+      })}
+    </div>
   );
 }

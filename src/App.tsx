@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router";
 import "./App.css";
-import Navbar from "./components/Navbar";
+import Navbar, { NavDock } from "./components/Navbar";
 import HomePage from "./pages/HomePage";
 import Error404Page from "./pages/Error404Page";
 import Footer from "./components/Footer";
@@ -28,6 +28,7 @@ export default function App() {
         </Suspense>
       </main>
       <Footer />
+      <NavDock />
     </>
   );
 }
