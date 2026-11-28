@@ -2,8 +2,10 @@ import { useState } from "react";
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
 
+export type typAccountState = "signUp" | "logIn";
+
 export default function AccountHandlerPopup({ id }: { id: string }) {
-  const [SignedUp, setSignedUp] = useState(false);
+  const [accState, setAccState] = useState<typAccountState>("signUp");
   return (
     <dialog
       id={id}
@@ -13,19 +15,24 @@ export default function AccountHandlerPopup({ id }: { id: string }) {
       <div className="modal-box">
         <header className="mb-4">
           <h3 className="text-lg font-bold">
-            {SignedUp ? `Sign In` : `Sign Up`}
+            {accState === "signUp" ? `Sign Up` : `Login`}
           </h3>
         </header>
-        <div>{SignedUp ? <SignUpForm /> : <LoginForm />}</div>
+        <div>
+          {accState === "signUp" ? (
+            <SignUpForm setAccState={setAccState} />
+          ) : (
+            <LoginForm setAccState={setAccState} />
+          )}
+        </div>
         <footer className="modal-action flex *:flex-1">
           <button
-            onClick={() => setSignedUp((prev) => !prev)}
             className="btn btn-primary"
             /*@ts-ignore*/
             command="hide-popover"
             commandfor={id}
           >
-            Sign In
+            {accState === "signUp" ? "Sign Up" : "Login"}
           </button>
           <button
             className="btn btn-soft"

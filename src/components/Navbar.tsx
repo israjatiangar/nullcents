@@ -75,7 +75,7 @@ export function NavDock() {
             }}
           >
             <item.icon
-              className={active ? "-translate-y-1" : ""}
+              className={`active:translate-y-0 ${active ? "-translate-y-1" : "translate-y-0"}`}
               size="24"
               weight={active ? "fill" : "duotone"}
             />

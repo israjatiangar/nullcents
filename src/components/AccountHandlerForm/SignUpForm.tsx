@@ -1,4 +1,11 @@
-export default function SignUpForm() {
+import type { Dispatch, SetStateAction } from "react";
+import type { typAccountState } from "./AccountHandlerPopup";
+
+export default function SignUpForm({
+  setAccState,
+}: {
+  setAccState: Dispatch<SetStateAction<typAccountState>>;
+}) {
   return (
     <form className="flex flex-col gap-6">
       <fieldset className="fieldset">
@@ -34,6 +41,16 @@ export default function SignUpForm() {
           placeholder="password"
         />
       </fieldset>
+      <p>
+        Don't have an Account?
+        <button
+          type="button"
+          className="btn btn-link"
+          onClick={() => setAccState("logIn")}
+        >
+          Sign Up
+        </button>
+      </p>
       <label className="label">
         <input type="checkbox" defaultChecked className="checkbox" />
         Remember me
